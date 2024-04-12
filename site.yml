@@ -1,0 +1,7 @@
+---
+- name: Setup & Configure Mac host
+  hosts: all
+  pre_tasks:
+    - name: Update brew
+      community.general.homebrew:
+        update_homebrew: true
