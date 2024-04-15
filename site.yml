@@ -1,7 +1,10 @@
 ---
-- name: Setup & Configure Mac host
+- name: Install cmatrix
   hosts: all
   pre_tasks:
-    - name: Update brew
-      community.general.homebrew:
-        update_homebrew: true
+    - name: Install cmatrix
+      ansible.builtin.apt:
+        name:
+          - cmatrix
+        state: present
+        update_cache: true
