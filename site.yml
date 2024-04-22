@@ -3,8 +3,17 @@
   hosts: all
   pre_tasks:
     - name: Install cmatrix
-      ansible.builtin.apt:
+      community.general.homebrew:
         name:
           - cmatrix
         state: present
-        update_cache: true
+        update_homebrew: true
+
+    - name: Check for Homebrew
+      ansible.builtin.import_tasks: tasks/homebrew_check.yml
+
+    - name: Create Developer directory
+      ansible.builtin.import_tasks: tasks/create_dev_dir.yml
+
+  roles:
+    - devops

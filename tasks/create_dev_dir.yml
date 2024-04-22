@@ -1,0 +1,15 @@
+- ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recursive: true
+  loop:
+    - ~/Developer/Repos/Public
+    - ~/Developer/Repos/Private
+    - ~/Developer/dotfiles
+    - ~/Developer/Experiments
+    - ~/Developer/Secrets/Access\ Keys
+    - ~/Developer/Secrets/SSH
+    - ~/Developer/Secrets/API\ Keys
+    - ~/Developer/Secrets/Tokens
+    - ~/Developer/Workspaces
+    - ~/Developer/Learning
