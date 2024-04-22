@@ -1,0 +1,19 @@
+# - name: Add Hashicorp repo/tap to Homebrew
+#   command: brew tap hashicorp/tap
+
+- name: Install devops tools
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - awscli
+    # - awscli-local
+    # - tfenv
+    - docker
+    - ansible
+    - ansible-lint
+    # - utm
+    - drawio
+    # - aws-vault
+    # - hashicorp/tap/vault
+    # - vagrant

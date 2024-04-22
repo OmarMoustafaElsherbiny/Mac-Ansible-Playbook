@@ -1,0 +1,22 @@
+- name: Add the Hasicorp tap/repo to Homebrew
+  command: brew tap hashicorp/tap
+
+- name: Install common developer tools
+  community.general.homebrew:
+      name: "{{ item }}"
+      state: present
+      update_homebrew: true
+  loop:
+    - visual-studio-code
+    - webstorm
+    - pycharm
+    - nvm
+    - pyenv
+    - awscli-local
+    - tfenv
+    - docker
+    - spotify
+    - figma
+    - obsidian
+    # - ansible
+    # - ansible-lint
