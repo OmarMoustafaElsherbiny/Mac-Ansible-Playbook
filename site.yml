@@ -16,4 +16,5 @@
       ansible.builtin.import_tasks: tasks/create_dev_dir.yml
 
   roles:
+    - common
     - devops
