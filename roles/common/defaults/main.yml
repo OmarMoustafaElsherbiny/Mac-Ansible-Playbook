@@ -1,0 +1,24 @@
+---
+common_brew_packages:
+  ide_tools:
+    - webstorm
+    - pycharm
+    - visual-studio-code
+
+  programming_languages_version_manager:
+    - pyenv
+    - nvm
+
+  design_tools:
+    - figma
+
+  productivity_tools:
+    - obsidian
+
+  entertainment:
+    - spotify
+
+# Homebrew repos/taps for extra tools
+common_homebrew_taps:
+  - hashicorp/tap
+  - homebrew/cask-fonts

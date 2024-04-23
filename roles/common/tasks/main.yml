@@ -1,22 +1,44 @@
-- name: Add the Hasicorp tap/repo to Homebrew
-  command: brew tap hashicorp/tap
+- name: Add external Homebrew repos/taps
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_taps }}"
 
-- name: Install common developer tools
-  community.general.homebrew:
-      name: "{{ item }}"
-      state: present
-      update_homebrew: true
+- name: Install fira code font (for vscode font ligatures)
+  community.general.homebrew_cask:
+    name: font-fira-code
+    state: present
+
+- name: Download MesloLGS NF (for terminal glyph icons with P10k)
+  ansible.builtin.get_url:
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20"{{ item | urlencode }}".ttf
+    dest: /tmp/MesloLGS NF "{{ item }}".ttf
+    mode: "644"
   loop:
-    - visual-studio-code
-    - webstorm
-    - pycharm
-    - nvm
-    - pyenv
-    - awscli-local
-    - tfenv
-    - docker
-    - spotify
-    - figma
-    - obsidian
-    # - ansible
-    # - ansible-lint
+    - Regular
+    - Bold
+    - Italic
+    - Bold Italic
+
+- name: Copy and install MesloLGS NF (for terminal glyph icons with P10k)
+  ansible.builtin.copy:
+    src: /tmp/MesloLGS NF "{{ item }}.ttf"
+    dest: ~/Library/Fonts
+    mode: "644"
+  loop:
+    - Regular
+    - Bold
+    - Italic
+    - Bold Italic
+
+- name: Install common tools
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+    update_homebrew: true
+  loop:
+    - "{{ common_brew_packages.ide_tools }}"
+    - "{{ common_brew_packages.programming_languages_version_manager }}"
+    - "{{ common_brew_packages.design_tools }}"
+    - "{{ common_brew_packages.productivity_tools }}"
+    - "{{ common_brew_packages.entertainment }}"
