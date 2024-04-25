@@ -1,0 +1,3 @@
+[submodule "roles/zsh/files/powerlevel10k"]
+	path = roles/zsh/files/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
