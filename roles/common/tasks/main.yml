@@ -11,8 +11,8 @@
 
 - name: Download MesloLGS NF (for terminal glyph icons with P10k)
   ansible.builtin.get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20"{{ item | urlencode }}".ttf
-    dest: /tmp/MesloLGS NF "{{ item }}".ttf
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20{{ item | urlencode }}.ttf
+    dest: /tmp/MesloLGS NF {{ item }}.ttf
     mode: "644"
   loop:
     - Regular
@@ -22,7 +22,7 @@
 
 - name: Copy and install MesloLGS NF (for terminal glyph icons with P10k)
   ansible.builtin.copy:
-    src: /tmp/MesloLGS NF "{{ item }}.ttf"
+    src: /tmp/MesloLGS NF {{ item }}.ttf
     dest: ~/Library/Fonts
     mode: "644"
   loop:
