@@ -1,6 +1,7 @@
 ---
 - name: Install cmatrix
-  hosts: all
+  hosts: localhost
+  connection: local
   pre_tasks:
     - name: Install cmatrix
       community.general.homebrew:
@@ -18,3 +19,4 @@
   roles:
     - common
     - devops
+    - { role: zsh, zsh_p10k_dest: ~/.config/zsh/plugins }
