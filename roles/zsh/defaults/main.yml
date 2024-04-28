@@ -1,2 +1,7 @@
 ---
-zsh_p10k_dest: ~
+# Default destination for .p10k.zsh and powerlevel10k repo
+zsh_p10k_dest: /tmp
+
+# You can print the available colors for p10k using this script:
+# for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+zsh_p10k_bg_color: 25

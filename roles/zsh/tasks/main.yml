@@ -1,15 +1,35 @@
 ---
-- name: Copy p10k config
+- name: Check if repo exists
+  ansible.builtin.stat:
+    path: "{{ zsh_p10k_dest }}/powerlevel10k"
+  register: repo
+
+- name: Download Powerlevel10k git repo
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    depth: 1
+    clone: true
+    update: true
+    version: b28d68f44b42f25703673fac514d0777f0af9d8a
+    dest: "{{ zsh_p10k_dest }}/powerlevel10k"
+    force: false
+  when: not repo.stat.exists
+
+# Write p10k variables to setup p10k with running p10k configure wizard
+- name: Copy p10k prompt config
   ansible.builtin.copy:
-    src: powerlevel10k/
+    src: .p10k.zsh
     dest: "{{ zsh_p10k_dest }}"
     mode: "644"
-  loop:
-    - powerlevel10k/
-    - .p10k.zsh
 
-- name: Copy .zshrc to home directory
+- name: Copy .zshrc template to home directory
   ansible.builtin.template:
     src: .zshrc.j2
-    dest: ~/.zshrc
+    dest: /tmp/.zshrc
+    mode: "644"
+
+- name: Copy rainbow theme config template (fixes warp contrast)
+  ansible.builtin.template:
+    src: p10k-rainbow.zsh.j2
+    dest: "{{ zsh_p10k_dest }}/powerlevel10k/config/p10k-rainbow.zsh"
     mode: "644"
