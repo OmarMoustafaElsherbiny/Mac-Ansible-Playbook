@@ -25,7 +25,7 @@
 - name: Copy .zshrc template to home directory
   ansible.builtin.template:
     src: .zshrc.j2
-    dest: /tmp/.zshrc
+    dest: ~/.zshrc
     mode: "644"
 
 - name: Copy rainbow theme config template (fixes warp contrast)
