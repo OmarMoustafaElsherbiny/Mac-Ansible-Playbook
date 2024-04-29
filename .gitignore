@@ -3,8 +3,12 @@
 .AppleDouble
 .LSOverride
 
+# Ansible vault pass
+.vault-pass
+
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*

@@ -22,11 +22,19 @@
     dest: "{{ zsh_p10k_dest }}"
     mode: "644"
 
-- name: Copy .zshrc template to home directory
+- name: Config interactive zsh shell template to home directory
   ansible.builtin.template:
     src: .zshrc.j2
     dest: ~/.zshrc
     mode: "644"
+
+- name: Copy zsh config files to home directory
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~"
+    mode: "644"
+  loop:
+    - .zshenv
 
 - name: Copy rainbow theme config template (fixes warp contrast)
   ansible.builtin.template:
