@@ -22,3 +22,5 @@ common_brew_packages:
 common_homebrew_taps:
   - hashicorp/tap
   - homebrew/cask-fonts
+  - localsend/localsend
+  # - homebrew/cask-versions
