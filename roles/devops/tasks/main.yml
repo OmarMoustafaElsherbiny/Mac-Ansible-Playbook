@@ -7,8 +7,9 @@
     state: present
   loop:
     - awscli
-    # - awscli-local
     # - tfenv
+    # - opentofu
+    # - terraform
     - docker
     - ansible
     - ansible-lint
@@ -17,3 +18,12 @@
     # - aws-vault
     # - hashicorp/tap/vault
     # - vagrant
+    # local aws
+    - localstack
+    - awscli-local
+    - terraform-local
+    - gitlab-ci-local
+    # k8s local cluster
+    - minikube
+    - kind
+# Openbao
