@@ -1,0 +1,22 @@
+# Write user defaults in the plist files in ~/Library/Preferences
+- name: Enable key repeat for VSCode (for neovim)
+  community.general.osx_defaults:
+    domain: com.microsoft.VSCode
+    key: ApplePressAndHoldEnabled
+    type: bool
+    value: false
+
+- name: Configure Warp defaults
+  community.general.osx_defaults:
+    domain: dev.warp.Warp-Stable
+    key: "{{ item.key }}"
+    type: string
+    value: "{{ item.value }}"
+  loop: 
+    - { key: FontName, value: "MesloLGS NF" }
+    - { key: FontSize, value: "13.0" }
+    - { key: HonorPS1, value: "true" }
+    - { key: VimModeEnabled, value: "true" }
+    - { key: VimStatusBar, value: "true" }
+    - { key: CursorBlink, value: "Enabled" }
+    - { key: SelectedSystemThemes, value: '{"light":"Light","dark":"Dark"}' }
